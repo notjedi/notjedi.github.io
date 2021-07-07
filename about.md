@@ -3,28 +3,40 @@ layout: page
 title: About
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+<style>
+    .info img {
+        float: left;
+        margin-right: 1rem;
+    }
+    .info ul{
+        padding-top: 0.2rem;
+        font-size: 16px;
+        list-style-type: none;
+    }
+    .info label{
+        color: #F1A0EA;
+    }
+</style>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Hey there! I'm Krithic.
+<br>
+<br>
 
-There are currently two themes built on Poole:
-
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
-
-Learn more and contribute on [GitHub](https://github.com/poole).
-
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+`[jedi@falcon1 ~ ] ➜ neofetch`
+<section class='info'>
+    <img src="/assets/avatar.png" width=250px>
+    <ul class='info' margin=10px>
+        <li> <label>jedi@falcon1</label> </li>
+        <li> ------------ </li>
+        <li> <label>Name</label>: Krithic Kumar </li>
+        <li> <label>Email</label>: krithickumarub@protonmail.com </li>
+        <li> <label>Education</label>: Computer Science </li>
+        <li> <label>Job</label>: None </li>
+        <li> <label>Country</label>: India </li>
+        <li>
+            <label>Interests</label>
+            : Astrophysics, listening to old <a href="https://open.spotify.com/playlist/0fhuTOLDHJU3NnhDOJH2eu">songs</a>
+        </li>
+        <li> <label>Website</label>: <a href="https://jedi2610.github.io">https://jedi2610.github.io</a></li>
+    </ul>
+</section>

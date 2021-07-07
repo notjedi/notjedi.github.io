@@ -137,7 +137,7 @@ abbr[title] {
 /* Code */
 code,
 pre {
-  font-family: 'Roboto Mono', Menlo, Monaco, monospace;
+  font-family: 'JetBrains Mono', Menlo, Monaco, monospace;
 }
 code {
   padding: .25em .5em;
@@ -177,7 +177,7 @@ pre code {
 
 /* Gist via GitHub Pages */
 .gist .gist-file {
-  font-family: 'Roboto Mono', Menlo, Monaco, monospace !important;
+  font-family: 'JetBrains Mono', Menlo, Monaco, monospace !important;
 }
 .gist .markdown-body {
   padding: 15px;
@@ -273,7 +273,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
+  max-width: 50rem;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
@@ -358,7 +358,6 @@ tbody tr:nth-child(odd) th {
 }
 .related-posts li a:hover {
   color: #268bd2;
-  text-decoration: none;
 }
 .related-posts li a:hover small {
   color: inherit;
