@@ -9,7 +9,7 @@ permalink:        pretty
 title:            Krithic Kumar
 tagline:          'A Jekyll theme'
 description:      'My musings on computer science and technology.'
-baseurl:          /
+baseurl:          '/'
 
 author:
   name:           'Krithic Kumar'
