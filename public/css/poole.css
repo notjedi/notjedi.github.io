@@ -320,11 +320,13 @@ tbody tr:nth-child(odd) th {
   margin-bottom: 4em;
 }
 
+/* #*/
+/* #*/
 /* Blog post or page title */
 .page-title,
 .post-title,
 .post-title a {
-  color: #303030;
+  color: #F1A0EA;
 }
 .page-title,
 .post-title {
