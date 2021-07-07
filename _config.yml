@@ -8,12 +8,12 @@ permalink:        pretty
 # Setup
 title:            Krithic Kumar
 tagline:          'A Jekyll theme'
-description:      'My musings on computer science and technology'
+description:      'My musings on computer science and technology.'
 baseurl:          /
 
 author:
   name:           'Krithic Kumar'
-  url:            https://jedi.github.io
+  url:            https://jedi2610.github.io
 
 paginate:         5
 
@@ -24,4 +24,5 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
 
-github:           https://github.com/jedi2610
+github:
+  repo: https://github.com/jedi2610

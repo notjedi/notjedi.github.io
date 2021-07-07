@@ -48,7 +48,7 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Mono', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -60,23 +60,10 @@ html {
 
 body {
   color: #515151;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #202020;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
-}
-
-/* No `:visited` state is required by default (browsers will use `a`) */
-a {
-  color: #268bd2;
-  text-decoration: none;
-}
-a strong {
-  color: inherit;
-}
-/* `:focus` is linked to `:hover` for basic accessibility */
-a:hover,
-a:focus {
-  text-decoration: underline;
 }
 
 /* Headings */
@@ -150,7 +137,7 @@ abbr[title] {
 /* Code */
 code,
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: 'Roboto Mono', Menlo, Monaco, monospace;
 }
 code {
   padding: .25em .5em;
@@ -190,7 +177,7 @@ pre code {
 
 /* Gist via GitHub Pages */
 .gist .gist-file {
-  font-family: Menlo, Monaco, "Courier New", monospace !important;
+  font-family: 'Roboto Mono', Menlo, Monaco, monospace !important;
 }
 .gist .markdown-body {
   padding: 15px;
@@ -389,7 +376,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Mono', Helvetica, Arial, sans-serif;
   color: #ccc;
   text-align: center;
 }
