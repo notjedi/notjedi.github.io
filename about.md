@@ -3,21 +3,6 @@ layout: page
 title: About
 ---
 
-<style>
-    .info img {
-        float: left;
-        margin-right: 1rem;
-    }
-    .info ul{
-        padding-top: 0.2rem;
-        font-size: 16px;
-        list-style-type: none;
-    }
-    .info label{
-        color: #F1A0EA;
-    }
-</style>
-
 Hey there! I'm Krithic.
 <br>
 <br>
