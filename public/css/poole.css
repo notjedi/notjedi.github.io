@@ -252,7 +252,7 @@ tbody tr:nth-child(odd) th {
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
-  color: #999;
+  color: #999 !important;
 }
 
 
@@ -391,7 +391,7 @@ tbody tr:nth-child(odd) th {
 .pagination-item {
   display: block;
   padding: 1rem;
-  border: 1px solid #eee;
+  border: 1px solid #555;
 }
 .pagination-item:first-child {
   margin-bottom: -1px;
