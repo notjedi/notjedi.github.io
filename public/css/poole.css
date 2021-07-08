@@ -243,20 +243,6 @@ tbody tr:nth-child(odd) th {
  * Extend paragraphs with `.lead` for larger introductory text.
  */
 
-/* custom css for about page with `info` class" */
-.info img {
-    float: left;
-    margin-right: 1rem;
-}
-.info ul{
-    padding-top: 0.2rem;
-    font-size: 16px;
-    list-style-type: none;
-}
-.info label{
-    color: #F1A0EA;
-}
-
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
