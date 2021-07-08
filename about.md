@@ -51,6 +51,7 @@ I initially wanted to be an astrophysicist but then things went the other way an
     <section class='info'>
         <img src="/assets/avatar.png" width=250px>
         <ul class='info' margin=10px>
+            <!-- <text class='blue'>jedi</text><text class='maroon'>@</text><text class='pink'>falcon1</text> -->
             <li> <label>jedi@falcon1</label> </li>
             <li> ------------ </li>
             <li> <label>Name</label>: Krithic Kumar </li>
