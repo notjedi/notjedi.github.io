@@ -25,11 +25,8 @@ I initially wanted to be an astrophysicist but then things went the other way an
 <br>
 
 <code>
-    [<label color='#05ffa1 '>jedi</label>
-    <label color='#CBFFE6'>@</label>
-    <label color='#F1A0EA'>falcon1</label>
-    <label color='#FFCFEA'>~</label> ] ➜ 
-    <label color='#84FFC8'>neofetch</label>
+    [<label color='#05ffa1 '>jedi</label><label color='#CBFFE6'>@</label><label color='#F1A0EA'>falcon1</label>
+    <label color='#FFCFEA'>~</label> ] ➜ <label color='#84FFC8'>neofetch</label>
 </code>
 <section class='info'>
     <img src="/assets/avatar.png" width=250px>
