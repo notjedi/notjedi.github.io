@@ -19,5 +19,9 @@ knowing the ins and outs of something and learning it hands-on really helps you 
 don't have any plans on what to blog though but I guess you will mostly find machine learning, 
 blockchain stuff and some random thoughts.
 
+Also this site was designed to be as minimalistic as possible. I specifically went with a no 
+javascript website. I'm tired of bloated websites. An ideal website: 
+[https://motherfuckingwebsite.com](https://motherfuckingwebsite.com/).
+
 Hopefully I will maintain this blog and probably inspire others to start their own blog. I am not 
 making any promises though.
