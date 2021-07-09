@@ -112,6 +112,12 @@ a strong {
 .sidebar-nav-item.active {
   font-weight: bold;
 }
+@media (max-width: 38em) {
+  .sidebar-nav-item {
+    display: inline-block;
+  }
+}
+
 
 /* Sticky sidebar
  *
