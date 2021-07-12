@@ -25,8 +25,8 @@ key exchange algorithm. So Diffie-Hellman is first of it's kind. There are sever
 RSA.
 
 Fun fact: You use the RSA algorithm in your daily life because the HTTPS protocol uses RSA encryption. Without HTTPS your WhatsApp conversations
-wouldn't be secure(not that they are secure to begin with because Facebook is spying on you, but that's maybe for another day) and web security in general
-would be a security nightmare.
+wouldn't be secure(not that they are secure to begin with because your data is getting zucked by  Facebook, but atleast people near you can't see the data
+in clear text) and web security in general would be a security nightmare.
 
 <br>
 ## Properties of Public-Key Cryptography Systems
@@ -79,7 +79,7 @@ that the computed number is always less than 2<sup>256</sup>? The answer is that
 the scope of this article so if you don't know what finite fields are then [this](https://www.youtube.com/watch?v=ColSUxhpn6A) would be a good place to start.
 To be frank even I don't know finite fields to it's core, but I got the basics down. Calculating Elliptic Curves over a finite field would make sure that the
 computed number is always less then 2<sup>256</sup>. A naive explanation of finite fields would be that we take the mod of the result comuted with respct to
-a number `p`. This number `p` is usually prime. In case of secp256k1 this prime is the largest prime number that is less than 2<sup>256</sup>.
+a number `p`. This number `p` is usually prime. In case of secp256k1 `p` is the largest prime number that is less than 2<sup>256</sup>.
 
 
 <br>
@@ -168,7 +168,7 @@ Now that we got the basics down, we can then go on and explore how digital signa
 the number"(if you get the reference, lol).
 
 This is my first article so I don't know how it came out. I took a ton of ~~copied~~ inspiration from this hackernoon
-[article](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3), you should check it out though he did an amazin job at explaining
+[article](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3), you should check it out though he did an amazing job at explaining
 Elliptic Curve Cryptography. Thanks for reading.
 
 <br>
@@ -177,7 +177,7 @@ Elliptic Curve Cryptography. Thanks for reading.
 1. [Elliptic Curve Cryptography - A Gentle Introduction](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction)
 2. [Math behind Elliptic Curve Cryptography](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3)
 3. [ECDSA - learnmeabitcoin](https://learnmeabitcoin.com/technical/ecdsa#creating-a-public-key)
-4. [Wyoming Elliptic Curve](https://www.math.brown.edu/johsilve/Presentations/WyomingEllipticCurve.pdf)
+4. [Elliptic Curve - math.brown.edu](https://www.math.brown.edu/johsilve/Presentations/WyomingEllipticCurve.pdf)
 5. [Elliptic Curves from mae.ufl.edu](https://mae.ufl.edu/~uhk/elliptic-curves.pdf)
 6. [Public Key - learnmeabitcoin](https://learnmeabitcoin.com/technical/public-key)
 7. [Elliptic Curve - Point Multiplication](https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication)
