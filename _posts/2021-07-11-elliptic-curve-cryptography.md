@@ -233,3 +233,6 @@ Elliptic Curve Cryptography. Thanks for reading.
 8. [Order of a point on an Elliptic Curve](https://math.stackexchange.com/questions/704202/order-of-a-point-on-an-elliptic-curve)
 9. [Intuition on point at infinity(the identity element)](https://math.stackexchange.com/questions/13763/elliptic-curves-and-points-at-infinity)
 10. [A Diffie-Hellman Primer from UCLA](https://www.math.ucla.edu/~baker/40/handouts/rev_DH/node1.html)
+11. [Math behind Bitcoin - Coindesk](https://www.coindesk.com/math-behind-bitcoin)
+12. [Elliptic Curves - arctechnica](https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/)
+13. [ECC - A gentle introduction](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/#elliptic-curves)
