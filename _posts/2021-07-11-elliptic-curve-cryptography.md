@@ -25,7 +25,7 @@ key exchange algorithm. So Diffie-Hellman is first of it's kind. There are sever
 RSA.
 
 Fun fact: You use the RSA algorithm in your daily life because the HTTPS protocol uses RSA encryption. Without HTTPS your WhatsApp conversations
-wouldn't be secure(not that they are secure to begin with because your data is getting zucked by  Facebook, but atleast people near you can't see the data
+wouldn't be secure(not that they are secure to begin with because your data is getting zucked by  Facebook, but at least people near you can't see the data
 in clear text) and web security in general would be a security nightmare.
 
 <br>
@@ -54,7 +54,7 @@ In case of Bitcoin, it uses a standard called [secp256k1](https://www.secg.org/s
 Elliptic curves are symmetric along their x-axis - this means that given point `x` on the x-axis, the corresponding points on the y-axis are `y` and `-y`.
 This property is smartly used in Bitcoin addresses to save transaction fees. Originally Bitcoin used "uncompressed" public keys in which your public key
 is both the `x` and `y` coordinate of a point. But later, using this property, it introduced a new "compressed" key format that lets you save data (as
-the public key is reduced to half of it's size by omiting the y coordinate) and thus save transaction fees. See
+the public key is reduced to half of it's size by omitting the y coordinate) and thus save transaction fees. See
 [bitcoin-book](https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch04.asciidoc#compressed-public-keys) on how compressed keys are represented.
 
 <center>
@@ -78,7 +78,7 @@ So in order for the public keys to fit the 512 bit length obviously each coordin
 that the computed number is always less than 2<sup>256</sup>? The answer is that we compute the Elliptic Curve over a finite field. Finite Fields are beyond
 the scope of this article so if you don't know what finite fields are then [this](https://www.youtube.com/watch?v=ColSUxhpn6A) would be a good place to start.
 To be frank even I don't know finite fields to it's core, but I got the basics down. Calculating Elliptic Curves over a finite field would make sure that the
-computed number is always less then 2<sup>256</sup>. A naive explanation of finite fields would be that we take the mod of the result comuted with respct to
+computed number is always less then 2<sup>256</sup>. A naive explanation of finite fields would be that we take the mod of the result computed with respect to
 a number `p`. This number `p` is usually prime. In case of secp256k1 `p` is the largest prime number that is less than 2<sup>256</sup>.
 
 
@@ -103,6 +103,24 @@ R[x] = slope<sup>2</sup> – P[x] – Q[x] mod p
 R[y] = slope * (P[x] – R[x]) – P[y] mod p
 </pre>
 
+If you were paying attention you might have noticed something. Given 2 points and a line `L` which passes through those 2 points, it is not always guaranteed that
+the line `L` will intersect the curve at a 3rd point. Now that you know that it will not always intersect the curve at a 3rd point, I'd like you to think of a point
+at which this will happen. Did you find out which point it is? Yeah it's the point of inflection (I'm not entirely sure if it's called the point of inflection, so I
+just included an image with the point highlighted). There is also another image showing the tangent line at that point, as you can see the slope is infinity and the
+line always stays parallel to the y-axis hence it doesn't intersect the curve at any other point (graphs are made using [desmos](https://www.desmos.com/calculator)).
+
+<center>
+    <img style="display: inline-block" src="/assets/ecc-point-of-inflection.png" alt="point-of-infection" width=600px />
+    <img style="display: inline-block" src="/assets/ecc-vertical-line.png" alt="vertical-line" width=580px />
+</center>
+
+So here are few properties of the elliptic curve that you might find useful later:
+
+1. A non-vertical line intersecting two non-tangent points on the curve will always intersect the curve at a third point.
+2. A non-vertical line tangent to the curve at a point will intersect precisely one other point on the curve.
+
+Note: The lines have to be non-vertical for the reasons mentioned above.
+
 <br>
 ### Point Doubling
 
@@ -118,7 +136,7 @@ Then the equation of the tangent line is given by:
 
 $$y = mx + c \text{, where } m = \frac{(3x^2 + a)}{2y}$$
 
-Now that we have the equation to the line, we substitue it in the equation of the curve to find where they coincide, note that `x1` and `y1` are coordinates of point `P`.
+Now that we have the equation to the line, we substitute it in the equation of the curve to find where they coincide, note that `x1` and `y1` are coordinates of point `P`.
 
 $$[m(x - x1) + y1]^2 = x^3 + ax + b \text{, where } m = \frac{(3x^2 + a)}{2y}$$
 
@@ -159,6 +177,37 @@ There is another implementation, of the same algorithm, on the [wikipedia](https
 but I find it a little confusing.  If you are a computer science student you might recognize that this algorithm is analogous to the
 [binary exponentiation](https://cp-algorithms.com/algebra/binary-exp.html) algorithm. Turns out this is exactly the same, only that we are doubling and adding instead
 of multiplying and squaring.
+
+Let's break it down a little more with an example. Let's say you want to compute `10*P`. We can approach the problem in 2 ways:
+
+1. you could add `P` to itself 10 times - P + (P + (P + (P + (P + (P + (P + (P + (P + P)))))))) or
+
+2. another approach would be to calculate it this way
+
+```
+2P = P + P
+4P = 2P + 2P
+8P = 4P + 4P
+10P = 2P + 8P
+```
+
+Clearly the 2nd approach is far better as it only uses the point addition algorithm 4 times compared to 10 times in the first approach. Just to make thing clear here's
+another example. In this example we calculate `9*P`, this time it's more like the original algorithm:
+
+```
+9 = 1001 (in binary - just means 8 + 1)
+R = 9 P
+R = P + 8P
+R = P + 2(4P)
+R = P + 2(2(2P))
+
+# we start calculating 9P here
+R = P + 2(2(P + P))
+R = P + 2(2P + 2P)
+R = P + 4P + 4P
+```
+
+As you can see computing `9*P` again only requires 4 point additions compared to 9 if we were to use the naive approach.
 
 Fun fact that you don't need to know and is totally irrelevant: I _kind of_ came up with this on my own once I got to know that adding point `P` to itself `n` times
 is not practical (most probably because I was already familiar with the binary exponentiation algorithm). Yeah, feels a little validating xD.
