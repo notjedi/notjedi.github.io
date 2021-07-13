@@ -212,6 +212,9 @@ As you can see computing `9*P` again only requires 4 point additions compared to
 Fun fact that you don't need to know and is totally irrelevant: I _kind of_ came up with this on my own once I got to know that adding point `P` to itself `n` times
 is not practical (most probably because I was already familiar with the binary exponentiation algorithm). Yeah, feels a little validating xD.
 
+Finally [here](https://gist.github.com/jedi2610/676955a4c95fee20a628391ad453a688) is the python code for the above operations that I copied from
+[stackoverflow](https://stackoverflow.com/questions/52595329/elliptic-curve-double-and-add-implementation-in-python) and fixed it.
+
 Now that we got the basics down, we can then go on and explore how digital signatures work. In the next article we will explore how
 [Digital Signatures](https://en.wikipedia.org/wiki/Digital_signature) works. At it's core it's basically "tell me that you know a number without actually telling me
 the number"(if you get the reference, lol).
@@ -236,3 +239,6 @@ Elliptic Curve Cryptography. Thanks for reading.
 11. [Math behind Bitcoin - Coindesk](https://www.coindesk.com/math-behind-bitcoin)
 12. [Elliptic Curves - arctechnica](https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/)
 13. [ECC - A gentle introduction](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/#elliptic-curves)
+14. [Finite Fields](https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptography-finite-fields-and-discrete-logarithms/)
+15. [modular inverse of square root algorithm - R](https://rdrr.io/cran/numbers/src/R/modlog.R)
+15. [modular inverse of square root algorithm - python](https://www.geeksforgeeks.org/find-square-root-modulo-p-set-2-shanks-tonelli-algorithm/)
