@@ -242,3 +242,4 @@ Elliptic Curve Cryptography. Thanks for reading.
 14. [Finite Fields](https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptography-finite-fields-and-discrete-logarithms/)
 15. [modular inverse of square root algorithm - R](https://rdrr.io/cran/numbers/src/R/modlog.R)
 15. [modular inverse of square root algorithm - python](https://www.geeksforgeeks.org/find-square-root-modulo-p-set-2-shanks-tonelli-algorithm/)
+16. [modular square root](https://www.rieselprime.de/ziki/Modular_square_root)
