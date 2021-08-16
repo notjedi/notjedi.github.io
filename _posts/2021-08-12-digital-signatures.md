@@ -9,6 +9,7 @@ In the last article we have seen the essentials of elliptic curve cryptography
 I promised that we would see about digital signatures in the next article.
 Without digital signatures, cryptocurrencies as we know won't exist.
 
+<br>
 ## Digital Signatures
 
 Let's say you want to prove to someone that you are the author of certain message,
@@ -17,6 +18,7 @@ the message to prove that you indeed published the message. In short, digital
 signatures can be used to verify that the author or the origin of a message is
 indeed a legitimate user.
 
+<br>
 ### How do you digitally sign a message?
 
 Let's say a prover wants to prove a message to a verifier who verifies the message.
@@ -69,7 +71,7 @@ resistance property of hash functions. Meaning she can't cheat because `x = hash
 a fake `R` that cancels out `pubKey` in the equation she needs to a number which is dependent on the
 point `R`.
 
-
+<br>
 ### References
 
 1. [Explain like I'm 5 - digital signatures](https://blog.oleganza.com/post/162861219668/eli5-digital-signatures)
