@@ -75,5 +75,5 @@ point `R`.
 ### References
 
 1. [Explain like I'm 5 - digital signatures](https://blog.oleganza.com/post/162861219668/eli5-digital-signatures)
-2. [Implementation of signing in the ecdsa python library](https://github.com/starkbank/ecdsa-python/blob/master/ellipticcurve/ecdsa.py#L12)
+2. [Implementation of signing in the python-ecdsa library](https://github.com/tlsfuzzer/python-ecdsa/blob/master/src/ecdsa/ecdsa.py#L212)
 3. [Elliptic Curve Cryptography from Hackernoon](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3)
