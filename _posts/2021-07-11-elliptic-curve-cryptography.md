@@ -270,7 +270,7 @@ own once I got to know that adding point `P` to itself `n` times is not practica
 because I was already familiar with the binary exponentiation algorithm). Yeah, feels a little
 validating xD.
 
-Finally [here](https://gist.github.com/jedi2610/676955a4c95fee20a628391ad453a688) is the python code
+Finally [here](https://gist.github.com/notjedi/676955a4c95fee20a628391ad453a688) is the python code
 for the above operations that I copied from
     [stackoverflow](https://stackoverflow.com/questions/52595329/elliptic-curve-double-and-add-implementation-in-python)
     and fixed it.

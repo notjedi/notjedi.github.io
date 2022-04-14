@@ -10,7 +10,7 @@ title:            Krithic Kumar
 # tagline:          'A Jekyll theme'
 description:      'My musings on computer science and technology.'
 baseurl:          ''
-url:              https://jedi2610.github.io/
+url:              https://notjedi.github.io/
 
 author:
   name:           'Krithic Kumar'
@@ -25,4 +25,4 @@ plugins:
   - jekyll-paginate
 
 github:
-  repo: https://github.com/jedi2610
+  repo: https://github.com/notjedi

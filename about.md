@@ -56,7 +56,7 @@ I initially wanted to be an astrophysicist but then things went the other way an
             <li> ------------ </li>
             <li> <label>Name</label>: Krithic Kumar </li>
             <li> <label>Email</label>: krithickumarub@protonmail.com </li>
-            <li> <label>Website</label>: <a href="https://jedi2610.github.io">https://jedi2610.github.io</a></li>
+            <li> <label>Website</label>: <a href="https://notjedi.github.io">https://notjedi.github.io</a></li>
             <li> <label>Education</label>: Computer Science </li>
             <li> <label>Country</label>: India </li>
             <li> <label>Learning</label>: blockchain & ML</li>
