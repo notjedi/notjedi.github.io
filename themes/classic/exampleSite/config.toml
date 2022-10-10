@@ -1,0 +1,44 @@
+baseurl = "/"
+enableEmoji = true
+footnotereturnlinkcontents = "↩"
+googleAnalytics = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+languageCode = "en-us"
+theme = "hugo-classic"
+title = "Classic"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+anchorLineNos = false
+codeFences = true
+guessSyntax = false
+hl_Lines = ""
+lineAnchors = ""
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+style = "monokai"
+tabWidth = 4
+
+[permalinks]
+post = "/post/:year/:month/:day/:slug/"
+
+[[menu.main]]
+name = "Categories"
+url = "/categories/"
+weight = 1
+[[menu.main]]
+name = "Tags"
+url = "/tags/"
+weight = 2
+[[menu.feed]]
+name = "Subscribe"
+url = "/index.xml"
+
+[params]
+custom_css = ["css/theme-override.css"]
+description = "A simple, minimal blog for those who love text."
+footer = "Open-Source | [Github](https://github.com/goodroot/hugo-classic) | [Keybase](https://keybase.io/goodroot)"
