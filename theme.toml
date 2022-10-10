@@ -1,0 +1,17 @@
+description = "A minimal blog theme, for those who love text. Based off the eXtremely minimal theme by Yihui Xui."
+features = ["blog"]
+homepage = "https://goodroot.ca"
+license = "MIT"
+licenselink = "https://github.com/goodroot/hugo-classic/blob/master/LICENSE.md"
+min_version = "0.18"
+name = "Hugo - Classic"
+tags = ["minimal", "blog", "personal", "simple", "clean", "starter", "minimalist", "darkmode"]
+
+[author]
+homepage = "https://goodroot.ca"
+name = "Kellen Evan Person"
+
+[original]
+author = "Yihui Xui"
+homepage = "https://xmin.yihui.name/"
+repo = "https://github.com/yihui/hugo-xmin"
