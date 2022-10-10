@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>A Primer on Elliptic Curve Cryptography</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	===================<br>
+	== <a href="/">Krithic Kumar</a> ==<br>
+	===================
+	<div style="float: right;"></div><br>
+	<p>
+	<nav>
+			<a href="/"><b>Start</b></a>.
+			
+</header>
+
+	
+	<main>
+		<article>
+			<h1>A Primer on Elliptic Curve Cryptography</h1>
+			<b><time>2021-07-11 00:00:00</time></b>
+		       
+
+			<div>
+				<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<h2 id="introduction">Introduction</h2>
+<p>If you have used Bitcoin, Ethereum or any other cryptocurrency you would be familiar with public and
+private keys and if you are a more savvy person you might have also heard about ECC(Elliptic Curve
+Cryptography) or ECDSA(Elliptic Curve Digital Signature Algorithm). Today we will find out what
+exactly ECC is and how and why it&rsquo;s used in case of Bitcoin and maybe other cryptocurrencies.</p>
+<br>
+<h2 id="brief-history-on-public-key-cryptography">Brief History on Public-Key Cryptography</h2>
+<p>Public key cryptography is not new, it&rsquo;s been around for a long time. The first public key
+cryptography algorithm was
+<a href="https://cryptography.fandom.com/wiki/Diffie%E2%80%93Hellman_key_exchange">Diffie-Hellman</a>. ECC is
+just one way of doing public-key cryptography. It was invented by two guys named Whitfield Diffie
+and Martin Hellman. Apparently Hellman was obsessed with the problem of how do I send my friend an
+encrypted message? Well it&rsquo;s easy to send the encrypted message but how do I send the decryption key
+to the encrypted message. I could encrypt the decryption key, but then how do I send him the key to
+decrypt the decryption key? As you can see this quickly becomes a recursive problem that never ends.
+Hellman then teamed up with Diffie and went across the country to meet him. After approximately 4
+years, in 1976 they came up with the Diffie–Hellman key exchange algorithm. So Diffie-Hellman is
+first of it&rsquo;s kind. There are several others now, to name a few there are ElGamal, Paillier
+cryptosystem and RSA.</p>
+<p>Fun fact: You use the RSA algorithm in your daily life because the HTTPS protocol uses RSA
+encryption. Without HTTPS your WhatsApp conversations wouldn&rsquo;t be secure(not that they are secure to
+begin with because your data is getting zucked by  Facebook, but at least people near you can&rsquo;t see
+the data in clear text) and web security in general would be a security nightmare.</p>
+<br>
+<h2 id="properties-of-public-key-cryptography-systems">Properties of Public-Key Cryptography Systems</h2>
+<p>Why does Bitcoin use asymmetric-key cryptography? Well, asymmetric keys offer 2 properties:</p>
+<ol>
+<li>
+<p>Public and private keys - unlike symmetric-key cryptography you have a private and a public key -
+the public key is used to identify you publicly and the private key, as the name implies is kept
+safe. If your private key is lost or compromised then the attacker has full control over you
+funds. Also note that it&rsquo;s computationally unfeasible to work your way back to a private key
+given a public key. Functions that have this characteristic, easy to compute one way but hard to
+compute the other way, are called
+<a href="https://cryptography.fandom.com/wiki/Trapdoor_function">Trapdoor</a> functions. More formally,
+given a function <code>f(x)</code> it&rsquo;s hard to find <code>f<sup>&rsquo;</sup>(x)</code>.</p>
+</li>
+<li>
+<p>Sign and verify messages - this lets you prove that you are the owner of the corresponding public
+key without actually giving away the private key. This lets you sign transactions which is then
+verified by the miners that the transaction actually came from you.</p>
+</li>
+</ol>
+<p>Okay enough talk, let&rsquo;s dive into the mathematics of elliptic curves.</p>
+<br>
+<h2 id="elliptic-curves">Elliptic Curves</h2>
+<p>Elliptic curves generally have a mathematical form of <code>y<sup>2</sup> = x<sup>3</sup> + ax +
+b</code>. Your public key is just a point on this curve. In case of Bitcoin, it uses a standard
+called <a href="https://www.secg.org/sec2-v2.pdf">secp256k1</a> in which <code>a=0</code> and <code>b=7</code> so the equation ends
+up as <code>y<sup>2</sup> = x<sup>3</sup> + 7</code>. See Bitcoin
+<a href="https://en.bitcoin.it/wiki/Secp256k1">wiki</a> for more info.</p>
+<p>Elliptic curves are symmetric along their x-axis - this means that given point <code>x</code> on the x-axis,
+the corresponding points on the y-axis are <code>y</code> and <code>-y</code>. This property is smartly used in Bitcoin
+addresses to save transaction fees. Originally Bitcoin used &ldquo;uncompressed&rdquo; public keys in which your
+public key is both the <code>x</code> and <code>y</code> coordinate of a point. But later, using this property, it
+introduced a new &ldquo;compressed&rdquo; key format that lets you save data (as the public key is reduced to
+half of it&rsquo;s size by omitting the y coordinate) and thus save transaction fees. See
+<a href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch04.asciidoc#compressed-public-keys">bitcoin-book</a>
+on how compressed keys are represented.</p>
+<center>
+    <img src="/assets/elliptic-curves.jpg" alt="elliptic-curves" />
+    <figcaption>Image showing different elliptic curves.</figcaption>
+</center>
+<br>
+<h3 id="elliptic-curves-over-a-finite-field">Elliptic Curves over a Finite Field:</h3>
+<p>Bitcoin public keys are computed by multiplying a <a href="https://en.bitcoin.it/wiki/Secp256k1#Technical_details">base
+point</a>, usually denoted by <code>G</code>, that is
+known to everybody times your private key (a 256-bit number). When you multiply a point <code>P</code> on the
+curve by a number <code>n</code>, it is not always guaranteed to be less than 2<sup>256</sup>. Why should it be
+less than 2<sup>256 </sup> you ask? Well there are always standards, or more like limits, on how big
+the number can be (depending on the use-case). In case of Bitcoin and most other use cases the limit
+is 2<sup>256</sup>. Bitcoin&rsquo;s public keys are 512 bits long (256 for the x-coordinate and 256 for
+the y-coordinate).</p>
+<p>Note: I&rsquo;m only talking about the points associated with an uncompressed public key, the actual
+public keys are more than 512 bits long, this is because you encode some information to the key
+along with the points.</p>
+<p>So in order for the public keys to fit the 512 bit length obviously each coordinate should be less
+than or equal to 2<sup>256</sup>. So how do we ensure that the computed number is always less than
+2<sup>256</sup>? The answer is that we compute the Elliptic Curve over a finite field. Finite Fields
+are beyond the scope of this article so if you don&rsquo;t know what finite fields are then
+<a href="https://www.youtube.com/watch?v=ColSUxhpn6A">this</a> would be a good place to start. To be frank even
+I don&rsquo;t know finite fields to it&rsquo;s core, but I got the basics down. Calculating Elliptic Curves over
+a finite field would make sure that the computed number is always less then 2<sup>256</sup>. A naive
+explanation of finite fields would be that we take the mod of the result computed with respect to a
+number <code>p</code>. This number <code>p</code> is usually prime. In case of secp256k1 <code>p</code> is the largest prime number
+that is less than 2<sup>256</sup>.</p>
+<br>
+<h2 id="point-operations-on-elliptic-curve">Point Operations on Elliptic Curve</h2>
+<h3 id="point-addition">Point Addition</h3>
+<p>Lets say you have 2 points <code>P</code> and <code>Q</code> on the elliptic curve <code>E</code> and you need to add these two
+points. How do you add two points on the elliptic curve? It turns out that you need to find a line
+<code>L</code> that&rsquo;s passing through these 2 points. Once you have done that, you have to find another point
+<code>R</code> at which the line <code>L</code> intersects the curve, usually denoted by <code>E</code>. You then reflect that point
+<code>R</code> about x-axis, i.e flip the sign of y-coordinate of the point. This point is our 3rd point <code>R</code>
+that we get by adding the 2 points <code>P</code> and <code>Q</code>. Lets visually see whats going on. Images are taken
+from this hackernoon
+<a href="https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3">article</a>.</p>
+<br>
+<p>
+<figure>
+  <img src="/assets/point-addition.png" alt="point-addition" />
+</figure>
+
+
+</p>
+<p>Mathematically adding is given as follows: (taken from
+<a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_addition">wikipedia</a>)</p>
+<pre>
+slope = (Q[y] – P[y]) / (Q[x] – P[x]) mod p # finite fields
+R[x] = slope<sup>2</sup> – P[x] – Q[x] mod p
+R[y] = slope * (P[x] – R[x]) – P[y] mod p
+</pre>
+<p>If you were paying attention you might have noticed something. Given 2 points and a line <code>L</code> which
+passes through those 2 points, it is not always guaranteed that the line <code>L</code> will intersect the
+curve at a 3rd point. Now that you know that it will not always intersect the curve at a 3rd point,
+I&rsquo;d like you to think of a point at which this will happen. Did you find out which point it is? Yeah
+it&rsquo;s the point of inflection (I&rsquo;m not entirely sure if it&rsquo;s called the point of inflection, so I
+just included an image with the point highlighted). There is also another image showing the tangent
+line at that point, as you can see the slope is infinity and the line always stays parallel to the
+y-axis hence it doesn&rsquo;t intersect the curve at any other point (graphs are made using
+<a href="https://www.desmos.com/calculator">desmos</a>).</p>
+<center>
+    <img style="display: inline-block" src="/assets/ecc-point-of-inflection.png" alt="point-of-infection" width=600px />
+    <img style="display: inline-block" src="/assets/ecc-vertical-line.png" alt="vertical-line" width=580px />
+</center>
+<p>So here are few properties of the elliptic curve that you might find useful later:</p>
+<ol>
+<li>A non-vertical line intersecting two non-tangent points on the curve will always intersect the
+curve at a third point.</li>
+<li>A non-vertical line tangent to the curve at a point will intersect precisely one other point on
+the curve.</li>
+</ol>
+<p>Note: The lines have to be non-vertical for the reasons mentioned above.</p>
+<br>
+<h3 id="point-doubling">Point Doubling</h3>
+<p>Adding 2 points isn&rsquo;t always the case. Sometimes you need to add a point to itself. In that case we
+can&rsquo;t use the above formula because we can&rsquo;t find the slope of a line using just one point and
+moreover there are infinite lines passing through a single point <code>P</code>, so which one do we choose?
+Well we take the tangent line at point <code>P</code>. Why the tangent line you ask? Well you can still think
+of it as 2 points and that point <code>Q</code> is approaching <code>P</code> (infinitesimally closer to <code>P</code>) and now the
+line becomes the tangent line at point <code>P</code>. If you have taken any calculus class before you might be
+familiar that the slope of an equation at any given point is given by it&rsquo;s first derivative. In this
+case the first derivative of <code>y<sup>2</sup> = x<sup>3</sup> + ax + b</code> is:</p>
+<p>$$\frac{\mathrm{d}y}{\mathrm{d}x} = \frac{(3x^2 + a)}{2y}$$</p>
+<p>Then the equation of the tangent line is given by:</p>
+<p>$$y = mx + c \text{, where } m = \frac{(3x^2 + a)}{2y}$$</p>
+<p>Now that we have the equation to the line, we substitute it in the equation of the curve to find
+where they coincide, note that <code>x1</code> and <code>y1</code> are coordinates of point <code>P</code>.</p>
+<p>$$[m(x - x1) + y1]^2 = x^3 + ax + b \text{, where } m = \frac{(3x^2 + a)}{2y}$$</p>
+<p>You then solve the equation to get point <code>R</code>. Now, let&rsquo;s visualize what&rsquo;s happening: (images are
+taken from this hackernoon
+<a href="https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3">article</a>).</p>
+<br>
+<p>
+<figure>
+  <img src="/assets/point-doubling.jpg" alt="point-doubling" />
+</figure>
+
+
+</p>
+<p>Mathematically adding is given as follows: (taken from
+<a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_addition">wikipedia</a>)</p>
+<pre>
+slope = (3 P[x]<sup>2</sup> + a) / (2 P[y]) mod p
+R[x] = slope<sup>2</sup> – 2P[x] mod p
+R[y] = slope * (P[x] – R[x]) – P[y] mod p
+</pre>
+<br>
+<h3 id="point-multiplication">Point Multiplication</h3>
+<p>Okay now how do we multiply a point with a scalar? Let&rsquo;s say you want to compute <code>n * P</code>, where <code>n</code>
+is a scalar. A naive approach would be to add that point to itself using the point addition
+algorithm <code>n</code> number of times. But in real life applications these numbers are humungously large so
+it&rsquo;s not very practical. Turns out there are multiple methods to do this, see
+<a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_multiplication">wikipedia</a>
+for all the different methods, in this article we focus on the double-and-add method. The algorithm
+for double-and-add is as follows: (taken from
+<a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_multiplication">wikipedia</a>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(P, d):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> d <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>                         <span style="color:#75715e"># computation complete</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> d <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> P
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> d <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> point_add(P, f(P, d <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) <span style="color:#75715e"># addition when d is odd</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> f(point_double(P), d<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)   <span style="color:#75715e"># doubling when d is even</span>
+</span></span></code></pre></div><p>There is another implementation, of the same algorithm, on the
+<a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Point_multiplication">wikipedia</a>
+page, but I find it a little confusing.  If you are a computer science student you might recognize
+that this algorithm is analogous to the <a href="https://cp-algorithms.com/algebra/binary-exp.html">binary
+exponentiation</a> algorithm. Turns out this is
+exactly the same, only that we are doubling and adding instead of multiplying and squaring.</p>
+<p>Let&rsquo;s break it down a little more with an example. Let&rsquo;s say you want to compute <code>10*P</code>. We can
+approach the problem in 2 ways:</p>
+<ol>
+<li>
+<p>you could add <code>P</code> to itself 10 times - P + (P + (P + (P + (P + (P + (P + (P + (P + P)))))))) or</p>
+</li>
+<li>
+<p>another approach would be to calculate it this way</p>
+</li>
+</ol>
+<pre tabindex="0"><code>2P = P + P
+4P = 2P + 2P
+8P = 4P + 4P
+10P = 2P + 8P
+</code></pre><p>Clearly the 2nd approach is far better as it only uses the point addition algorithm 4 times compared
+to 10 times in the first approach. Just to make thing clear here&rsquo;s another example. In this example
+we calculate <code>9*P</code>, this time it&rsquo;s more like the original algorithm:</p>
+<pre tabindex="0"><code>9 = 1001 (in binary - just means 8 + 1)
+R = 9 P
+R = P + 8P
+R = P + 2(4P)
+R = P + 2(2(2P))
+
+# we start calculating 9P here
+R = P + 2(2(P + P))
+R = P + 2(2P + 2P)
+R = P + 4P + 4P
+</code></pre><p>As you can see computing <code>9*P</code> again only requires 4 point additions compared to 9 if we were to use
+the naive approach.</p>
+<p>Fun fact that you don&rsquo;t need to know and is totally irrelevant: I <em>kind of</em> came up with this on my
+own once I got to know that adding point <code>P</code> to itself <code>n</code> times is not practical (most probably
+because I was already familiar with the binary exponentiation algorithm). Yeah, feels a little
+validating xD.</p>
+<p>Finally <a href="https://gist.github.com/notjedi/676955a4c95fee20a628391ad453a688">here</a> is the python code
+for the above operations that I copied from
+<a href="https://stackoverflow.com/questions/52595329/elliptic-curve-double-and-add-implementation-in-python">stackoverflow</a>
+and fixed it.</p>
+<p>Now that we got the basics down, we can then go on and explore how digital signatures work. In the
+next article we will explore how <a href="https://en.wikipedia.org/wiki/Digital_signature">Digital
+Signatures</a> works. At it&rsquo;s core it&rsquo;s basically
+&ldquo;tell me that you know a number without actually telling me the number&rdquo;(if you get the reference,
+lol).</p>
+<p>This is my first article so I don&rsquo;t know how it came out. I took a ton of <del>copied</del> inspiration
+from this hackernoon
+<a href="https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3">article</a>,
+you should check it out though he did an amazing job at explaining Elliptic Curve Cryptography.
+Thanks for reading.</p>
+<br>
+<h4 id="references">References</h4>
+<ol>
+<li><a href="https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction">Elliptic Curve Cryptography - A Gentle Introduction</a></li>
+<li><a href="https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3">Math behind Elliptic Curve Cryptography</a></li>
+<li><a href="https://learnmeabitcoin.com/technical/ecdsa#creating-a-public-key">ECDSA - learnmeabitcoin</a></li>
+<li><a href="https://www.math.brown.edu/johsilve/Presentations/WyomingEllipticCurve.pdf">Elliptic Curve - math.brown.edu</a></li>
+<li><a href="https://mae.ufl.edu/~uhk/elliptic-curves.pdf">Elliptic Curves from mae.ufl.edu</a></li>
+<li><a href="https://learnmeabitcoin.com/technical/public-key">Public Key - learnmeabitcoin</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication">Elliptic Curve - Point Multiplication</a></li>
+<li><a href="https://math.stackexchange.com/questions/704202/order-of-a-point-on-an-elliptic-curve">Order of a point on an Elliptic Curve</a></li>
+<li><a href="https://math.stackexchange.com/questions/13763/elliptic-curves-and-points-at-infinity">Intuition on point at infinity(the identity element)</a></li>
+<li><a href="https://www.math.ucla.edu/~baker/40/handouts/rev_DH/node1.html">A Diffie-Hellman Primer from UCLA</a></li>
+<li><a href="https://www.coindesk.com/math-behind-bitcoin">Math behind Bitcoin - Coindesk</a></li>
+<li><a href="https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/">Elliptic Curves - arctechnica</a></li>
+<li><a href="https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/#elliptic-curves">ECC - A gentle introduction</a></li>
+<li><a href="https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptography-finite-fields-and-discrete-logarithms/">Finite Fields</a></li>
+<li><a href="https://rdrr.io/cran/numbers/src/R/modlog.R">modular inverse of square root algorithm - R</a></li>
+<li><a href="https://www.geeksforgeeks.org/find-square-root-modulo-p-set-2-shanks-tonelli-algorithm/">modular inverse of square root algorithm - python</a></li>
+<li><a href="https://www.rieselprime.de/ziki/Modular_square_root">modular square root</a></li>
+</ol>
+
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/post/2022-04-15-religion-and-caste/">My thoughts on Religion and Caste in India</a></li>
+				
+				<li><a href="/post/2021-08-12-digital-signatures/">Digital Signatures</a></li>
+				
+				<li><a href="/post/2021-07-11-elliptic-curve-cryptography/">A Primer on Elliptic Curve Cryptography</a></li>
+				
+				<li><a href="/post/2021-07-08-hello-world/">Hello World!</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2022 <a href="/"><b>Krithic Kumar</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>

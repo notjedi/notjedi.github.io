@@ -1,0 +1,40 @@
+baseurl = "/"
+enableEmoji = true
+footnotereturnlinkcontents = "↩"
+googleAnalytics = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+languageCode = "en-us"
+theme = "classic"
+title = "Krithic Kumar"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+anchorLineNos = false
+codeFences = true
+guessSyntax = false
+hl_Lines = ""
+lineAnchors = ""
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+style = "monokai"
+tabWidth = 4
+
+[permalinks]
+post = "/post/:year/:month/:day/:slug/"
+
+[[menu.feed]]
+name = "tags"
+url = "/tags"
+[[menu.feed]]
+name = "rss"
+url = "/index.xml"
+
+[params]
+custom_css = ["css/classic-override.css"]
+description = "Musings on computer science and technology."
+footer = "[home](/) | [github](https://github.com/notjedi) | [youtube](https://www.youtube.com/channel/UCS6soGWcxCdxafDLap_9Btg) | [mail](mailto:krithickumarub@protonmail.com) | [rss](/index.xml)"
+handle = 'notjedi'

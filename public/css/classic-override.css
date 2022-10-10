@@ -1,0 +1,18 @@
+html {
+    font-family:
+        'monospace',
+        'Inter',
+        'Inter var';
+}
+
+code {
+    font-family:
+        'monospace';
+    color: #5E2BEF;
+    font-size: 90%;
+    line-height: 1.50rem;
+}
+
+pre span {
+    color: #F8F8F2;
+}

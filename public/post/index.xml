@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Krithic Kumar</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Krithic Kumar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My thoughts on Religion and Caste in India</title>
+      <link>/post/2022-04-15-religion-and-caste/</link>
+      <pubDate>Fri, 15 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-15-religion-and-caste/</guid>
+      <description>It was a fine morning and I was scrolling through reddit on my phone while taking a dump, I noticed I was logged out of my account and I was too lazy to log back in with TOTP and stuff, I decided to scroll through the frontpage which had a lot of posts from r/india and r/IndiaSpeaks. I was scrolling through my feed only to find a bunch of posts about rape threats to Muslim women, people vandalizing a Muslim shop, etc.</description>
+    </item>
+    
+    <item>
+      <title>Digital Signatures</title>
+      <link>/post/2021-08-12-digital-signatures/</link>
+      <pubDate>Thu, 12 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-08-12-digital-signatures/</guid>
+      <description>Introduction In the last article we have seen the essentials of elliptic curve cryptography I promised that we would see about digital signatures in the next article. Without digital signatures, cryptocurrencies as we know won&amp;rsquo;t exist.
+## Digital Signatures Let&amp;rsquo;s say you want to prove to someone that you are the author of certain message, how do you do it using public-key cryptography. Turns out you can digitally sign the message to prove that you indeed published the message.</description>
+    </item>
+    
+    <item>
+      <title>A Primer on Elliptic Curve Cryptography</title>
+      <link>/post/2021-07-11-elliptic-curve-cryptography/</link>
+      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-07-11-elliptic-curve-cryptography/</guid>
+      <description>Introduction If you have used Bitcoin, Ethereum or any other cryptocurrency you would be familiar with public and private keys and if you are a more savvy person you might have also heard about ECC(Elliptic Curve Cryptography) or ECDSA(Elliptic Curve Digital Signature Algorithm). Today we will find out what exactly ECC is and how and why it&amp;rsquo;s used in case of Bitcoin and maybe other cryptocurrencies.
+Brief History on Public-Key Cryptography Public key cryptography is not new, it&amp;rsquo;s been around for a long time.</description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>/post/2021-07-08-hello-world/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-07-08-hello-world/</guid>
+      <description>Hi, there. Welcome to my blog. This is Krithic, your bumbling host. I have no idea how you made it to the corner of the interwebs. But now that you are here, let me show you around.
+So why blog? Well, I have wanted to write a blog since high school to share what I have learned and after joining university I started grinding computer science and while I was at it I was reading blog posts(largely technical) by people like Vitalik, Andrej Karpathy and from various other misc sites.</description>
+    </item>
+    
+  </channel>
+</rss>

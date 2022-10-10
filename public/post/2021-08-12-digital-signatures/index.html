@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>Digital Signatures</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	===================<br>
+	== <a href="/">Krithic Kumar</a> ==<br>
+	===================
+	<div style="float: right;"></div><br>
+	<p>
+	<nav>
+			<a href="/"><b>Start</b></a>.
+			
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Digital Signatures</h1>
+			<b><time>2021-08-12 00:00:00</time></b>
+		       
+
+			<div>
+				<h2 id="introduction">Introduction</h2>
+<p>In the last article we have seen the essentials of elliptic curve cryptography
+I promised that we would see about digital signatures in the next article.
+Without digital signatures, cryptocurrencies as we know won&rsquo;t exist.</p>
+<br>
+## Digital Signatures
+<p>Let&rsquo;s say you want to prove to someone that you are the author of certain message,
+how do you do it using public-key cryptography. Turns out you can digitally sign
+the message to prove that you indeed published the message. In short, digital
+signatures can be used to verify that the author or the origin of a message is
+indeed a legitimate user.</p>
+<br>
+### How do you digitally sign a message?
+<p>Let&rsquo;s say a prover wants to prove a message to a verifier who verifies the message.
+It just so happens that the names of the prover and verifier are Alice and Bob
+respectively. We need to come up with an algorithm that can do this. To start off we
+need a base point <code>G</code> that is publicly agreed upon. Here is how the algorithm goes:</p>
+<!--- Make sure to mention that the randomly chosen point must be in the order of the curve. --->
+<ol>
+<li>Alice generates a private key <code>privKey</code> and keeps it a secret.</li>
+<li>She then calculates her public key <code>pubKey</code> by multiplying <code>privKey</code>
+with the base point <code>G</code>.</li>
+<li>She then sends her public key <code>pubKey</code> to Bob.</li>
+<li>Alice then chooses another random number <code>r</code> just like she chose her <code>privKey</code>.</li>
+<li>She then computes a new point <code>R</code> by multiplying <code>r</code> and <code>G</code>.</li>
+<li>She also computes a number <code>sum</code> by adding the two numbers <code>privKey</code> and <code>r</code>.</li>
+<li>She then sends them off to Bob for him to verify.</li>
+</ol>
+<!--- TODO: link article --->
+<ol start="8">
+<li>Bob then verifies that <code>sum * G == pubKey + R</code>. (this is possible because its
+a property of elliptic curves, if you are not familiar check out my previous article
+on the same).</li>
+</ol>
+<p>But this algorithm allows someone else to trick Bob without knowing Alice&rsquo;s private
+key <code>privKey</code>. Give it a thought on how one can possibly deceive Bob.</p>
+<p>Since the other person knows that Bob will calculate <code>sum * G == pubKey + R</code> in order to verify,
+she can just compute <code>R</code> as follows <code>R = r*G - pubKey</code> and just set <code>sum = r</code>. Now the
+equation works out to be <code>sum * G == pubKey + r*G - pubKey</code> (once we replace<code>sum</code> with <code>r</code> and
+expand <code>R</code>) and that in turn works out to <code>r*G == r*G</code></p>
+<p>Well it&rsquo;s really sad that we can cheat using this algorithm. But there is a fix.
+The fix is that instead of adding <code>pubKey</code> to <code>R</code> once, Bob chooses to add <code>pubKey</code>
+<code>x</code> times to <code>R</code>. So in the updated algorithm Bob calculates RHS as follows <code>(x*pubKey) + R</code>,
+and then send Alice the number <code>x</code> so that she can calculate and send back the number
+<code>sum = (x*privkey) + r</code> and Bob will compute the LHS as follows <code>sum * G</code> and verify that it
+is indeed Alice. The updated algorithm would be:</p>
+<ol>
+<li>Alice chooses a random number <code>r</code> and send the point <code>R</code> by calculating <code>r*G</code>.</li>
+<li>Bob then chooses a number <code>x</code> and send it to Alice.</li>
+<li>Alice knows that Bob would add <code>pubKey</code> to <code>R</code> <code>x</code> times, so she does the same with the numbers,
+she calcuates <code>sum = (x*privKey) + r</code>. She then sends the number <code>sum</code> to Bob.</li>
+<li>Bob then verifies by computing <code>sum * G == (x*pubKey) + R</code>.</li>
+</ol>
+<!--- TODO: link preimage resistance property maybe? --->
+<p>It&rsquo;s really not practical to communicate these many times while verifying. So to make the process
+a little more non-interactive the number <code>x</code> is usually set to the hash of the point <code>R</code>. But the
+hash function should be deemed good so that others can&rsquo;t trick the hash function. Note that Alice
+can&rsquo;t compute <code>x</code> efficiently if the hash function is deemed good, this is because of the preimage
+resistance property of hash functions. Meaning she can&rsquo;t cheat because <code>x = hash(R)</code> and to compute
+a fake <code>R</code> that cancels out <code>pubKey</code> in the equation she needs to a number which is dependent on the
+point <code>R</code>.</p>
+<br>
+### References
+<ol>
+<li><a href="https://blog.oleganza.com/post/162861219668/eli5-digital-signatures">Explain like I&rsquo;m 5 - digital signatures</a></li>
+<li><a href="https://github.com/tlsfuzzer/python-ecdsa/blob/master/src/ecdsa/ecdsa.py#L212">Implementation of signing in the python-ecdsa library</a></li>
+<li><a href="https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3">Elliptic Curve Cryptography from Hackernoon</a></li>
+<li><a href="http://cryptocouple.com/">Interesting history of the name Alice and Bob</a></li>
+</ol>
+
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/post/2022-04-15-religion-and-caste/">My thoughts on Religion and Caste in India</a></li>
+				
+				<li><a href="/post/2021-08-12-digital-signatures/">Digital Signatures</a></li>
+				
+				<li><a href="/post/2021-07-11-elliptic-curve-cryptography/">A Primer on Elliptic Curve Cryptography</a></li>
+				
+				<li><a href="/post/2021-07-08-hello-world/">Hello World!</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2022 <a href="/"><b>Krithic Kumar</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>
