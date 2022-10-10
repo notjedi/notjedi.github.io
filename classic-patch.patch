@@ -1,0 +1,63 @@
+From 374857bf47fc0040bb0041151342e1d878dd8e47 Mon Sep 17 00:00:00 2001
+From: Krithic Kumar <krithickumarub@protonmail.com>
+Date: Mon, 10 Oct 2022 20:17:41 +0530
+Subject: [PATCH] style: minor changes on how the website looks
+
+---
+ layouts/_default/list.html        | 2 +-
+ layouts/_default/single.html      | 5 ++---
+ layouts/partials/head_custom.html | 2 +-
+ 3 files changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/layouts/_default/list.html b/layouts/_default/list.html
+index 0ee6442..2ab58eb 100644
+--- a/layouts/_default/list.html
++++ b/layouts/_default/list.html
+@@ -13,7 +13,7 @@
+      {{ range (where $pages "Section" "!=" "") }}
+      <li>
+        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+-       <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
++       <a href="{{ .RelPermalink }}">{{ lower .Title | markdownify }}</a>
+      </li>
+      {{ end }}
+    </ul>
+diff --git a/layouts/_default/single.html b/layouts/_default/single.html
+index fd2db3b..f0d0d71 100644
+--- a/layouts/_default/single.html
++++ b/layouts/_default/single.html
+@@ -1,8 +1,8 @@
+ {{ partial "header.html" . }}
+ <div class="article-meta">
+-<h1><span class="title">{{ .Title | markdownify }}</span></h1>
++<h2><span class="title">{{ .Title | markdownify }}</span></h2>
+ {{ with .Params.author }}<h2 class="author">{{ . }}</h2>{{ end }}
+-{{ if .Params.date }}<h2 class="date">{{ .Date.Format "2006/01/02" }}</h2>{{ end }}
++{{ if .Params.date }}<h3 class="date">{{ .Date.Format "2006/01/02" }}</h3>{{ end }}
+ <p class="terms">
+   {{ range $i := (slice "categories" "tags") }}
+   {{ with ($.Param $i) }}
+@@ -18,7 +18,6 @@
+ <div class="content-wrapper">
+   <main>
+     {{ .Content }}
+-    <a href="/"> >> Home</a>
+   </main>
+ </div>
+ {{ partial "footer.html" . }}
+diff --git a/layouts/partials/head_custom.html b/layouts/partials/head_custom.html
+index 3eabe50..93d2272 100644
+--- a/layouts/partials/head_custom.html
++++ b/layouts/partials/head_custom.html
+@@ -5,7 +5,7 @@
+       {{ $title := lower .Title }}
+       {{ $section := lower .Section }}
+       <li class="pull-left {{ if .IsHome }}current{{ end }}">
+-        <a href="{{ .Site.BaseURL }}">~/{{ lower .Site.Title}}</a>
++        <a href="{{ .Site.BaseURL }}">~/{{ .Site.Params.handle }}</a>
+       </li>
+       {{ range .Site.Menus.main }}
+       {{ $name := lower .Name }}
+-- 
+2.38.0
+

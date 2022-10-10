@@ -1,0 +1,81 @@
+html {
+  font-family:
+    'monospace',
+    'Inter',
+    'Inter var';
+}
+
+code {
+  font-family:
+    'monospace';
+  font-size: 90%;
+  line-height: 1.50rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+      background-color: #181a1b;
+    }
+    blockquote {
+      background: #181a1b;
+    }
+    header {
+      background: #613DC1;
+      border-bottom:
+    }
+    .article-meta, .menu a {
+      background: #2D271D;
+    }
+    pre {
+      background-color: #272822;
+    }
+    code {
+      background: #2A243D;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+  .article-meta, .menu a {
+    background: #F4EBDD;
+    color: #000;
+  }
+  pre {
+    color: #F8F8F2;
+    background-color: #272822;
+  }
+  code {
+    background: #E0E0E0;
+  }
+}
+
+body {
+  max-width: 1000px;
+}
+
+.article-meta, .menu a {
+  border-style: none;
+}
+
+pre {
+  border: none;
+}
+
+main {
+  max-width: 900px;
+}
+
+#avatar {
+  width: 250px;
+  float: right;
+  padding: 10px;
+  display: block;
+}
+
+@media only screen and (min-width : 480px) {
+  #avatar {
+    min-width: 40px;
+    float: center;
+    padding: 10px 10px 10px 20px;
+    display: block;
+  }
+}
