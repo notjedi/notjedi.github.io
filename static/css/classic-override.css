@@ -7,7 +7,9 @@ html {
 
 code {
   font-family:
-    'monospace';
+    'monospace',
+    'Inter',
+    'Inter var';
   font-size: 90%;
   line-height: 1.50rem;
 }
@@ -21,7 +23,7 @@ code {
     }
     header {
       background: #613DC1;
-      border-bottom:
+      border-bottom: none;
     }
     .article-meta, .menu a {
       background: #2D271D;
