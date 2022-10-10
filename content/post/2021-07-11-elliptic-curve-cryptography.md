@@ -1,6 +1,8 @@
 ---
 date: "2021-07-11T00:00:00Z"
 title: A Primer on Elliptic Curve Cryptography
+tags:
+  - cryptography
 ---
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -115,7 +117,7 @@ points. How do you add two points on the elliptic curve? It turns out that you n
 `L` that's passing through these 2 points. Once you have done that, you have to find another point
 `R` at which the line `L` intersects the curve, usually denoted by `E`. You then reflect that point
 `R` about x-axis, i.e flip the sign of y-coordinate of the point. This point is our 3rd point `R`
-that we get by adding the 2 points `P` and `Q`. Lets visually see whats going on. Images are taken
+that we get by adding the 2 points `P` and `Q`. Lets visually see what's going on. Images are taken
 from this hackernoon
 [article](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3).
 

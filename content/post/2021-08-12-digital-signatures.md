@@ -1,6 +1,8 @@
 ---
 date: "2021-08-12T00:00:00Z"
 title: Digital Signatures
+tags:
+  - cryptography
 ---
 
 ## Introduction
@@ -57,7 +59,7 @@ is indeed Alice. The updated algorithm would be:
 1. Alice chooses a random number `r` and send the point `R` by calculating `r*G`.
 2. Bob then chooses a number `x` and send it to Alice.
 3. Alice knows that Bob would add `pubKey` to `R` `x` times, so she does the same with the numbers,
-   she calcuates `sum = (x*privKey) + r`. She then sends the number `sum` to Bob.
+   she calculates `sum = (x*privKey) + r`. She then sends the number `sum` to Bob.
 4. Bob then verifies by computing `sum * G == (x*pubKey) + R`.
 
 <!--- TODO: link preimage resistance property maybe? --->

@@ -1,6 +1,8 @@
 ---
 date: "2022-04-15T00:00:00Z"
 title: My thoughts on Religion and Caste in India
+tags:
+  - rant
 ---
 
 It was a fine morning and I was scrolling through reddit on my phone while taking a dump, I noticed
@@ -31,10 +33,10 @@ caste. Like wtfffffff? seriously wtfff? I have little or no respect for them. We
 different government and it is time we choose our leaders right and hold them accountable.
 
 There is a lot of caste and religious discrimination in the north, especially in Uttar Pradesh,
-Gujarat and also not to mention Karnataka from the south. Atleast the place I live in, Tamilnadu, is
-better cause there is relatively very little religious discrimination, although caste discrimination
-still prevails in rural areas and even in many suburban households intercaste marriage is still
-considered taboo.
+Gujarat and also not to mention Karnataka from the south. At least the place I live in, Tamilnadu,
+is better cause there is relatively very little religious discrimination, although caste
+discrimination still prevails in rural areas and even in many suburban households intercaste
+marriage is still considered taboo.
 
 This society doesn't give me hope at all. I apologize for sounding depressing but I think human
 greed, ego and stupidness is the [great](https://www.nickbostrom.com/extraterrestrial.pdf)
