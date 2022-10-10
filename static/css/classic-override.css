@@ -1,15 +1,13 @@
 html {
   font-family:
-    'monospace',
     'Inter',
-    'Inter var';
+    'monospace';
 }
 
 code {
   font-family:
-    'monospace',
     'Inter',
-    'Inter var';
+    'monospace';
   font-size: 90%;
   line-height: 1.50rem;
 }
