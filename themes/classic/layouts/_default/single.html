@@ -1,8 +1,8 @@
 {{ partial "header.html" . }}
 <div class="article-meta">
-<h1><span class="title">{{ .Title | markdownify }}</span></h1>
+<h2><span class="title">{{ .Title | markdownify }}</span></h2>
 {{ with .Params.author }}<h2 class="author">{{ . }}</h2>{{ end }}
-{{ if .Params.date }}<h2 class="date">{{ .Date.Format "2006/01/02" }}</h2>{{ end }}
+{{ if .Params.date }}<h3 class="date">{{ .Date.Format "2006/01/02" }}</h3>{{ end }}
 <p class="terms">
   {{ range $i := (slice "categories" "tags") }}
   {{ with ($.Param $i) }}
@@ -18,7 +18,6 @@
 <div class="content-wrapper">
   <main>
     {{ .Content }}
-    <a href="/"> >> Home</a>
   </main>
 </div>
 {{ partial "footer.html" . }}
