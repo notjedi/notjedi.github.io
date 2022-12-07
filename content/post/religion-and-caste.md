@@ -2,6 +2,7 @@
 date: "2022-04-15T00:00:00Z"
 title: My thoughts on Religion and Caste in India
 tags:
+  - thoughts
   - rant
 ---
 
