@@ -21,8 +21,8 @@ with my friends during school, tuition and a new addition to the list is college
 me rethink my assumption that money can make me the most happiest.
 
 I wanted to have an open-minded conversation with someone who can help me make an informed choice on
-what my "new" view on money and life would be. enter my friend [@Trif](https://github.com/nottrif).
-After exchanging a few text messages back and forth on whatsapp, I realized that money still is a
-major part/component of life and it enables you to do things that you want to do. but there is a
-limit at which the happiness you get out of money saturates. to truly be happy you need both money
+what my "new" view on money and life would be. Enter my friend [@Trif](https://github.com/nottrif).
+After exchanging a few text messages back and forth on WhatsApp, I realized that money still is a
+major part/component of life and it enables you to do things that you want to do. But, there is a
+limit at which the happiness you get out of money saturates. To truly be happy you need both money
 and also do what you enjoy doing in life.

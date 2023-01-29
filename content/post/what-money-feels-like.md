@@ -12,4 +12,5 @@ all bro, just spend some money and enjoy your life. went on to pick all the clot
 straight to the billing counter, without thinking about the price. billed all of em, it got to a
 whooping 6000 rupees. i have never bought clothes for 6k in my entire life, even if you had to
 account for an entire year, but i spent 6k on clothes in a single day. it really does feel very
-different when you are able to spend money without thinking.
+different when you are able to spend money without thinking. It feels empowering after being a
+disabled person for so long.
