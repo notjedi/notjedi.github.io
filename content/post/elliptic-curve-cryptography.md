@@ -2,6 +2,7 @@
 date: "2021-07-11T00:00:00Z"
 title: A Primer on Elliptic Curve Cryptography
 tags:
+  - programming
   - cryptography
 ---
 <script type="text/javascript" async
